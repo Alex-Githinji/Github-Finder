@@ -28,7 +28,9 @@ const Header = () => {
     };
     return (
       <>
+      <div className='header-info'>
         <div className="header">
+
             <div className="logo">
                 <h2>GITHUB FINDER</h2>
             </div>
@@ -44,6 +46,9 @@ const Header = () => {
                 />
                 <button type="submit">Search</button>
             </form>
+
+            </div>
+
             <div className="hero">
               {loading && <p>Loading...</p>}
               {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -64,6 +69,7 @@ const Header = () => {
        
           
         </div>
+
         
         
         </>

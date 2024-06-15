@@ -1,3 +1,26 @@
+
+.header-info{
+    margin-left: 20px;
+    margin-top: 20px;
+    border: 2PX solid red;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+.header-info h2{
+    font-size: 35px;
+
+}
+
+
+.header-info img{
+    width: 100px;
+    height: 100px;
+}
+
 .header{
     display: flex;
     justify-content: space-between;
@@ -44,22 +67,4 @@
 }
 
 
-/* 
-.hero{
-    background-color: aqua;
-    left: 0px;
-    display: flex;
 
-
-} */
-
-.header-info{
-    margin-left: 20px;
-    margin-top: 20px;
-    border: 2PX solid red;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-
-
-}

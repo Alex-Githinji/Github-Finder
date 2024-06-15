@@ -1,5 +1,5 @@
 
-.header-info{
+/* .header-info{
     margin-left: 20px;
     margin-top: 20px;
     border: 2PX solid red;
@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
 
-}
+} */
 
 
 .header-info h2{
@@ -28,6 +28,9 @@
     padding: 5px 10px;
     background-color: #333;
     color: #fff;
+    width: 100%;
+    border: 2px solid red;
+
 }
 
 
@@ -66,5 +69,23 @@
 
 }
 
+
+.hero{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border: 2px solid red;
+    width: 30%;
+    height: 100vh;
+    margin: 0 70px;
+}
+
+.hero img{
+    width: 50%;
+    height: 50%;
+    border-radius: 10px;
+    display: grid;
+    place-content: center;
+
+}
 
 

@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import './header.css'
+import { IoIosPeople } from "react-icons/io";
+import { RiGitRepositoryFill } from "react-icons/ri";
+import { CiLocationOn } from "react-icons/ci";
+
 
 const Header = () => {
   const [username, setUsername] = useState('Github');
     const [profile, setProfile] = useState(null);
+    const [repos, setRepos] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
@@ -26,6 +31,29 @@ const Header = () => {
             setLoading(false);
         }
     };
+
+    const fetchRepository = async (e) => {
+      e.preventDefault();
+      setLoading(true);
+      setError('');
+      setProfile(null);
+      setRepos([]); // Reset repos state
+
+      try {
+          const responserepos = await fetch(`https://api.github.com/users/${username}/repos`);
+          if (!responserepos.ok) {
+              throw new Error(`User not found: ${responserepos.statusText}`);
+          }
+          const datarepos = await responserepos.json();
+          setRepos(datarepos);
+      } catch (error) {
+          setError(error.message);
+      } finally {
+          setLoading(false);
+      }
+  };
+
+
     return (
       <>
       <div className='header-info'>
@@ -54,18 +82,32 @@ const Header = () => {
               {error && <p style={{ color: 'red' }}>{error}</p>}
               {profile && (
                   <div >
-                      <h2>{profile.name}</h2>
+                   
                       <img src={profile.avatar_url} alt="Profile Avatar" width={100} />
                       <p><strong>Bio:</strong> {profile.bio}</p>
-                      <p><strong>Location:</strong> {profile.location}</p>
-                      <p><strong>Public Repos:</strong> {profile.public_repos}</p>
-                      <p><strong>Followers:</strong> {profile.followers}</p>
-                      <p><strong>Following:</strong> {profile.following}</p>
-                      <p><strong>Profile URL:</strong> <a href={profile.html_url} target="_blank" rel="noopener noreferrer">{profile.html_url}</a></p>
+                      <p><strong><CiLocationOn /></strong> {profile.location}</p>
+                      <p><strong><RiGitRepositoryFill /></strong> {profile.public_repos} repository</p>
+                      <p><strong><IoIosPeople/></strong> {profile.followers} followers</p>
+                      <p><strong><IoIosPeople /></strong> {profile.following} Following</p>
+                     
                   </div>
               )}
               
           </div>
+          <div className="content">
+                {loading && <p>Loading...</p>}
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+                {repos.length > 0 && (
+                    <div>
+                        <h2>Repositories</h2>
+                        <ul>
+                            {repos.map(repo => (
+                                <li key={repo.id}>{repo.name}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+            </div>
        
           
         </div>
@@ -74,6 +116,8 @@ const Header = () => {
         
         </>
     );
-};
+
+  }
+  
 
 export default Header;

@@ -1,0 +1,10 @@
+.repo{
+   background-color: aqua;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding: 20px;
+   width: 30%;
+   height: 40%;
+
+}

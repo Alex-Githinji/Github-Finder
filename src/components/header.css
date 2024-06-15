@@ -29,7 +29,7 @@
     background-color: #333;
     color: #fff;
     width: 100%;
-    border: 2px solid red;
+  
 
 }
 
@@ -69,14 +69,25 @@
 
 }
 
+.section{
+    display: flex;
+    border: 2px solid red;
 
+}
 .hero{
     padding-top: 40px;
     padding-bottom: 40px;
-    border: 2px solid red;
-    width: 30%;
+    border-right: 2px solid #333;
+    width: 25%;
     height: 100vh;
-    margin: 0 70px;
+    margin: 20px 50px;
+  
+  
+    
+
+ 
+   
+ 
 }
 
 .hero img{
@@ -85,7 +96,36 @@
     border-radius: 10px;
     display: grid;
     place-content: center;
-
 }
 
+.hero button{
+    background-color: #333;
+    border: none;
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 20px;
+    width: 200px;
+    border-radius: 10px;
+    gap: 1.5rem;
+}
+.hero button a{
+    text-decoration: none;
+    color: #fff;
+}
 
+.content{
+    padding: 20px 50px;
+    width: 75%;
+    border: 2px solid red;
+}
+
+.content ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* display: flex;
+    flex-wrap: wrap; */
+    grid-template-columns: 1fr , 1fr;
+    background-color: yellow;
+
+}

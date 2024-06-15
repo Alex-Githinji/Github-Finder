@@ -9,10 +9,14 @@ import repository from './userDetails/Repository'
 
 
 
-const Hero = ({ loading, error, profile }) => {
+const Hero = () => {
   
       return (
-     <div>Hero</div>
+     <div className='hero1'>
+      <p>hero hero</p>
+
+     </div>
+     
         
          
       );

@@ -1,7 +1,4 @@
 
-
-
-
 .header-info h2{
     font-size: 35px;
 
@@ -63,7 +60,6 @@
 
 .section{
     display: flex;
-    border: 2px solid red;
     padding: 20px;
     
 
@@ -75,12 +71,13 @@
     width: 25%;
     height: 100vh;
     margin: 20px 50px;   
+    padding-left: 40px;
  
 }
 
 .hero img{
-    width: 50%;
-    height: 50%;
+    width: 100%;
+    height: 100%;
     border-radius: 10px;
     display: grid;
     place-content: center;
@@ -92,7 +89,7 @@
     text-decoration: none;
     padding: 15px 20px;
     font-size: 20px;
-    width: 200px;
+    width: 180px;
     border-radius: 10px;
     gap: 1.5rem;
 }

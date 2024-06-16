@@ -1,7 +1,7 @@
 import Header from './components/Header'
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Repo from './userDetails/Repo';
+// import Repo from './userDetails/Repo';
 
 
 
@@ -12,7 +12,7 @@ const App = () => {
     <>
     <BrowserRouter>
     <Header />
-      <Repo />
+      {/* <Repo /> */}
       </BrowserRouter>
       
     </>

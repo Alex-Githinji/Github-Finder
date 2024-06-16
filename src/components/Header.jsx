@@ -3,7 +3,8 @@ import { CiLocationOn } from 'react-icons/ci';
 import { RiGitRepositoryFill, RiStarSFill } from 'react-icons/ri';
 import { IoIosPeople } from 'react-icons/io';
 import { GoRepoForked } from 'react-icons/go';
-i
+import  './header.css'
+
 
 const Header = () => {
     const [username, setUsername] = useState('Github');
@@ -35,7 +36,7 @@ const Header = () => {
                 fetch(`https://api.github.com/users/${username}/repos`),
                 fetch(`https://api.github.com/users/${username}/followers`),
                 fetch(`https://api.github.com/users/${username}/following`)
-            ]);
+            ]); 
 
             if (!reposResponse.ok || !followersResponse.ok || !followingResponse.ok) {
                 throw new Error('Error fetching additional data');
@@ -91,6 +92,7 @@ const Header = () => {
                             </div>
                         )}
                     </div>
+                    <div className="details">
                     <div className="content">
                         {loading && <p>Loading...</p>}
                         {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -113,12 +115,12 @@ const Header = () => {
                     <div className="content">
                         {followers.length > 0 && (
                             <div>
-                                <h2>Followers</h2>
+                                <h2>Followers(30)</h2>
                                 <ul>
                                     {followers.map(follower => (
                                         <li key={follower.id}>
                                             <img src={follower.avatar_url} alt={follower.login} width={50} />
-                                            <p>{follower.login}</p>
+                                            <a href={follower.html_url} target="_blank" rel="noopener noreferrer">{follower.login}</a>
                                         </li>
                                     ))}
                                 </ul>
@@ -128,17 +130,20 @@ const Header = () => {
                     <div className="content">
                         {following.length > 0 && (
                             <div>
-                                <h2>Following</h2>
+                                <h2>Following(30)</h2>
                                 <ul>
                                     {following.map(following => (
                                         <li key={following.id}>
                                             <img src={following.avatar_url} alt={following.login} width={50} />
-                                            <p>{following.login}</p>
+                                            <a href={following.html_url} target="_blank" rel="noopener noreferrer">{following.login}</a>
+                                          
+
                                         </li>
                                     ))}
                                 </ul>
                             </div>
                         )}
+                    </div>
                     </div>
                 </div>
             </div>

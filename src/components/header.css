@@ -64,6 +64,8 @@
 .section{
     display: flex;
     border: 2px solid red;
+    padding: 20px;
+    
 
 }
 .hero{
@@ -72,13 +74,7 @@
     border-right: 2px solid #333;
     width: 25%;
     height: 100vh;
-    margin: 20px 50px;
-  
-  
-    
-
- 
-   
+    margin: 20px 50px;   
  
 }
 
@@ -108,7 +104,10 @@
 .content{
     padding: 20px 50px;
     width: 75%;
-    border: 2px solid red;
+    display: flex;
+
+
+
 }
 
 .content ul{
@@ -117,7 +116,19 @@
     margin: 0;
     display: flex;
     flex-wrap: wrap;
-    grid-template-columns: 1fr , 1fr;
-    background-color: yellow;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 1.7rem;
+    background-color: antiquewhite;
+   
+  
 
 }
+
+.content ul a{
+    text-decoration: none;
+    color: #333;
+    display: flex;
+
+}
+

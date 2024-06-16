@@ -3,12 +3,14 @@ import { CiLocationOn } from 'react-icons/ci';
 import { RiGitRepositoryFill, RiStarSFill } from 'react-icons/ri';
 import { IoIosPeople } from 'react-icons/io';
 import { GoRepoForked } from 'react-icons/go';
-import './header.css'
+i
 
 const Header = () => {
     const [username, setUsername] = useState('Github');
     const [profile, setProfile] = useState(null);
     const [repos, setRepos] = useState([]);
+    const [followers, setFollowers] = useState([]);
+    const [following, setFollowing] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
@@ -17,7 +19,9 @@ const Header = () => {
         setLoading(true);
         setError('');
         setProfile(null);
-        setRepos([]);  // Reset repos state
+        setRepos([]);
+        setFollowers([]);
+        setFollowing([]);
 
         try {
             const response = await fetch(`https://api.github.com/users/${username}`);
@@ -27,13 +31,23 @@ const Header = () => {
             const data = await response.json();
             setProfile(data);
 
-            // Fetch repositories after fetching profile
-            const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`);
-            if (!reposResponse.ok) {
-                throw new Error(`Repositories not found: ${reposResponse.statusText}`);
+            const [reposResponse, followersResponse, followingResponse] = await Promise.all([
+                fetch(`https://api.github.com/users/${username}/repos`),
+                fetch(`https://api.github.com/users/${username}/followers`),
+                fetch(`https://api.github.com/users/${username}/following`)
+            ]);
+
+            if (!reposResponse.ok || !followersResponse.ok || !followingResponse.ok) {
+                throw new Error('Error fetching additional data');
             }
+
             const reposData = await reposResponse.json();
+            const followersData = await followersResponse.json();
+            const followingData = await followingResponse.json();
+
             setRepos(reposData);
+            setFollowers(followersData);
+            setFollowing(followingData);
         } catch (error) {
             setError(error.message);
         } finally {
@@ -90,6 +104,36 @@ const Header = () => {
                                             <p>{repo.description}</p>
                                             <p><GoRepoForked /> {repo.forks_count} forks</p>
                                             <p><RiStarSFill /> {repo.stargazers_count} stars</p>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+                    <div className="content">
+                        {followers.length > 0 && (
+                            <div>
+                                <h2>Followers</h2>
+                                <ul>
+                                    {followers.map(follower => (
+                                        <li key={follower.id}>
+                                            <img src={follower.avatar_url} alt={follower.login} width={50} />
+                                            <p>{follower.login}</p>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+                    <div className="content">
+                        {following.length > 0 && (
+                            <div>
+                                <h2>Following</h2>
+                                <ul>
+                                    {following.map(following => (
+                                        <li key={following.id}>
+                                            <img src={following.avatar_url} alt={following.login} width={50} />
+                                            <p>{following.login}</p>
                                         </li>
                                     ))}
                                 </ul>
